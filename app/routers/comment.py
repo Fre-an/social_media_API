@@ -24,4 +24,7 @@ def create_comment(comment: schemas.Comment, db: Session = Depends(get_db), curr
 def get_comments(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     comments = db.query(models.Comment).filter(models.Comment.post_id == id).all()
 
+    if not comments:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No comments found")
+
     return comments
