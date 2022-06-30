@@ -52,3 +52,7 @@ class TokenData(BaseModel):
 class Vote(BaseModel):
     post_id: int
     dir: conint(ge=0, le=1)
+
+class Comment(BaseModel):
+    post_id: int
+    comment: str
