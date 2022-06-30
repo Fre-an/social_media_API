@@ -55,4 +55,11 @@ class Vote(BaseModel):
 
 class Comment(BaseModel):
     post_id: int
-    comment: str
+    content: str
+
+class CommentOut(Comment):
+    user_id: int
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
