@@ -13,7 +13,7 @@ def create_comment(comment: schemas.Comment, db: Session = Depends(get_db), curr
     post_query = db.query(models.Post).filter(models.Post.id == comment.post_id)
 
     if not post_query.first():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Post with id {id} was not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Post with id {comment.post_id} was not found")
 
     new_comment = models.Comment(user_id = current_user.id, content = comment.content, post_id = comment.post_id)
     db.add(new_comment)
